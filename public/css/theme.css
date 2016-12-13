@@ -1,0 +1,40 @@
+.navbar .avatar {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.navbar .user-info {
+    padding: 5px;
+}
+
+.edit_profile_style {
+    background: #18BC9C;
+    transition: .2s;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 14px 20px;
+    font-size: 20px;
+    display: block;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+.edit_profile_style:hover {
+    background: #0F7864;
+    transform: scale(1.1) rotate(20deg);
+}
+
+.user-avatar-profile {
+    margin: 0 auto;
+    border: 1px solid #ecf0f1;
+    padding: 3px;
+    background: #fff
+}
+
+.outline:focus {
+    outline: none;
+}
