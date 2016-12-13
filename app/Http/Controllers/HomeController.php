@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class HomeController extends Controller
 {
@@ -28,32 +29,43 @@ class HomeController extends Controller
 
     public function ajax_all_problems()
     {
-        return response()->json([
+        $data_test = [];
+        $data_test = DB::table('problems')->get()->all();
+        $data = [
             'type' => 'FeatureCollection',
-            'features' => [
-                [
-                    'type' => 'Feature',
-                    'id' => 0,
-                    'geometry' => [
-                        'type' => 'Point',
-                        'coordinates' => [
-                            50.950540, 28.630888
-                        ]
-                    ],
-                    'properties' => [
-                        'balloonContentHeader' => 'Super Test',
-                        'balloonContentBody' => '<a href="#">Содержимое</a> балуна 1',
-                        'balloonContentFooter' => 'Footer content 1',
-                        'clusterCaption' => 'Еще одна метка 1',
-                        'hintContent' => 'Текст подсказки 1',
-                    ],
-                    'options' => [
-                        'iconLayout' => 'default#image',
+            'features' => []
+        ];
+        foreach ($data_test as $key => $value) {
+            $data['features'][$key] = [
+                'type' => 'Feature',
+                'id' => $data_test[$key]->id,
+                'geometry' => [
+                    'type' => 'Point',
+                    'coordinates' => [
+                        $data_test[$key]->problems_lat, $data_test[$key]->problems_lng
+                    ]
+                ],
+                'properties' => [
+                    'balloonContentHeader' => $data_test[$key]->problems_title,
+                    'balloonContentBody' => $data_test[$key]->problems_short_desc,
+                    'balloonContentFooter' => 'footer content-' . $data_test[$key]->id,
+                    'clusterCaption' => 'Еще одна метка 1' . $data_test[$key]->id,
+                    'hintContent' => $data_test[$key]->problems_title,
+                ],
+                'options' => [
+                    'iconLayout' => 'default#image',
 //                        'iconImageSize' => [34, 34],
 //                        'iconImageHref' => 'maps-red.png',
-                    ]
                 ]
-            ]
-        ]);
+            ];
+        }
+
+        return response()->json($data);
     }
+
+    public function add_problems_get()
+    {
+        return view('add_new_problem');
+    }
+
 }

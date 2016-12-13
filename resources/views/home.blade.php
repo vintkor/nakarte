@@ -63,7 +63,7 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <a href="{{ URL::route('add_problems') }}">Добавить новый маркер</a>
                 </div>
             </div>
         </div>
