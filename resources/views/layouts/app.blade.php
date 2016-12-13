@@ -21,13 +21,14 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    @stack('scripts')
+    @stack('css')
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ URL::route('home') }}">
                         {{ config('app.name', 'Laravel') }}
@@ -36,13 +37,9 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                    <ul class="nav navbar-nav"></ul>
 
-                    <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Войти</a></li>
                             <li><a href="{{ url('/register') }}">Регистрация</a></li>
@@ -60,6 +57,7 @@
                                             Мой профиль
                                         </a>
                                     </li>
+                                    <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
@@ -67,7 +65,6 @@
                                             <i class="fa fa-sign-out" aria-hidden="true"></i>
                                             Выйти
                                         </a>
-
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>

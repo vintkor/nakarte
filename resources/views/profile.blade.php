@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@push('scripts')
+@endpush
+
+@push('css')
+@endpush
+
 @section('content')
     <div class="container">
         <div class="row">
