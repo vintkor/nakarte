@@ -11,12 +11,14 @@
 |
 */
 
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/home', function (){ return redirect()->route('home'); });
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@show_all_problems']);
+
+Route::get('/ajax_all_problems', ['as' => 'ajax_all_problems', 'uses' => 'HomeController@ajax_all_problems']);
 
 /*================= Пользователь ===============*/
 
-Route::get('/profile', ['as' => 'profile', 'uses' => 'UserController@index']);
-Route::post('/profile',['as' => 'profile', 'uses' => 'UserController@update_profile']);
+Route::get('/profile', ['as' => 'profile', 'uses' => 'userController@index']);
+Route::post('/profile',['as' => 'profile', 'uses' => 'userController@update_profile']);
 
 Auth::routes();

@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            {{--{!! Breadcrumbs::render('profile') !!}--}}Breadcrumbs
+            {!! Breadcrumbs::render('profile') !!}
         </div>
     </div>
 

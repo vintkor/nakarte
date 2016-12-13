@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {!! SEOMeta::generate() !!}
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -21,6 +21,7 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <script src="//yastatic.net/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
     @stack('scripts')
     @stack('css')
 </head>

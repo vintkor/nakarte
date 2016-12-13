@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use SEOMeta;
+use SEOMeta;
 use DB;
 use Image;
 use Storage;
@@ -21,7 +21,7 @@ class UserController extends Controller
 
         $user = \Auth::user();
 
-//        SEOMeta::setTitle("Профиль пользователя $user->name");
+        SEOMeta::setTitle("Профиль пользователя $user->name");
 
         return view('profile', ['user' => $user]);
     }
