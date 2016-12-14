@@ -38,3 +38,9 @@
 .outline:focus {
     outline: none;
 }
+
+/*================================= single-problem-wrapper ================================*/
+
+.single-problem-wrapper h1 {
+    text-align: center;
+}

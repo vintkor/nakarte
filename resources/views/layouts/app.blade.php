@@ -27,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-inverse navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
                     <!-- Branding Image -->
@@ -47,7 +47,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle user-info" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <img src="images/user/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="avatar">
+                                    <img src="{{ asset('images/user/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" class="avatar">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
