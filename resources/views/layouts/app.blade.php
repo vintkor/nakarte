@@ -26,6 +26,8 @@
     @stack('css')
 </head>
 <body>
+<div class="wrapper">
+<div class="content">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -80,6 +82,18 @@
 
         @yield('content')
     </div>
+</div>
+<div class="footer"></div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Контакты</h3>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>

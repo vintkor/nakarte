@@ -9,7 +9,9 @@
 @section('content')
     <div class="container">
         <div class="row">
-            {!! Breadcrumbs::render('profile') !!}
+            <div class="col-md-12">
+                {!! Breadcrumbs::render('profile') !!}
+            </div>
         </div>
     </div>
 

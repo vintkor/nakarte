@@ -2,8 +2,16 @@
 
 @section('content')
 
+
 <div id="map"></div>
 <hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {!! Breadcrumbs::render('add_problems') !!}            
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -17,9 +25,9 @@
                 <p>Поля отмеченные звёздочкой являются обязательными к заполнению!</p>
             </div>
             <div class="row">
-                <form action="" method="post">
-                    <input name="lat" type="hidden" id="lat" value="">
-                    <input name="lng" type="hidden" id="lng" value="">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <input name="lat" type="hidden" id="lat">
+                    <input name="lng" type="hidden" id="lng">
                     {{ csrf_field() }}
                     <div class="col-md-6">
                         <div class="form-group">
@@ -34,12 +42,16 @@
                             <label for="shortDesc" class="required">Краткое название проблемы</label>
                             <input name="shortDesc" type="text" id="shortDesc" class="form-control" required placeholder="Например: Выбоина на пешеходном переходе">
                         </div>
+                        <div class="form-group my-form-image">
+                            <label for="image">Изображение</label>
+                            <input type="file" id="image" name="image" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="you-tube">Адрес страницы YouTube с видео</label>
+                            <input type="text" id="you-tube" name="you-tube" class="form-control" placeholder="https://www.youtube.com/watch?v=DEesOWwBsYw">
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="longDesc" class="required">Расширенное описание, суть проблемы</label>
-                            <textarea name="longDesc" id="longDesc" class="form-control" required placeholder="Например: Выбоина на пешеходном переходе размером 1,5 на 2 метра. Пройти в час пик невозможно"></textarea>
-                        </div>
                         <div class="form-group">
                             <label for="category" class="required">Категория</label>
                             <select name="category" id="category" class="form-control">
@@ -48,6 +60,10 @@
                                 <option value="{{ $category->id }}">{{ $category->problem_categories_title }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="longDesc" class="required">Расширенное описание, суть проблемы</label>
+                            <textarea name="longDesc" id="longDesc" class="form-control" required placeholder="Например: Выбоина на пешеходном переходе размером 1,5 на 2 метра. Пройти в час пик невозможно"></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -157,7 +173,7 @@
         border: 1px solid #5A9F22;
     }
     textarea.form-control {
-        min-height: 131px ;
+        min-height: 303px ;
     }
     p.bg-info {
         padding: 3px;
@@ -178,5 +194,22 @@
         content: ' *';
         color: #d22;
     }
+/*    .my-form-image input {
+        display: none;
+    }
+    .my-form-image label:after {
+        content: 'Выберите изображение';
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 45px;
+        border-radius: 5px;
+        border: 2px solid #dce4ec;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+        top: 4px;
+    }*/
 </style>
 @endpush

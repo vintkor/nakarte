@@ -20,6 +20,12 @@ Breadcrumbs::register('profile', function($breadcrumbs)
     $breadcrumbs->push('Профиль пользователя ' . Auth::user()->name, route('profile'));
 });
 
+Breadcrumbs::register('add_problems', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Добавление новой проблемы', route('add_problems'));
+});
+
 
 //Breadcrumbs::register('single_news', function($breadcrumbs, $news) {
 //    $breadcrumbs->parent('news');
