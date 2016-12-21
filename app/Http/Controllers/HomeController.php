@@ -6,24 +6,16 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
 use DB;
 use URL;
+use Image;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
 //    public function __construct()
 //    {
 //        $this->middleware('auth');
 //    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function show_all_problems()
     {
         $categories = DB::table('problem_categories')->get()->all();
@@ -146,6 +138,29 @@ class HomeController extends Controller
         $problems_lat = $request->lat;               //Координата-LAT
         $problems_lng = $request->lng;               //Координата-LNG
         $problems_slug = str_slug($problems_title . '_' . $request->address . '_' . $request->curentAddress);
+        $problems_video = $request->you_tube;
+
+        if($request->hasFile('image'))
+        {
+            $problems_image = $request->file('image');
+            $filename = 'problem-' . $problem_categories_id . '-' . time() . '.' . $problems_image->getClientOriginalExtension();
+
+            $thumb = public_path('images/problems/problems_images/thumb/' . $filename);
+            $medium = public_path('images/problems/problems_images/medium/' . $filename);
+            $large = public_path('images/problems/problems_images/large/' . $filename);
+            $full = public_path('images/problems/problems_images/full/' . $filename);
+
+            Image::make($problems_image->getRealPath())->fit(80, 80)->save($thumb);
+            Image::make($problems_image->getRealPath())->fit(360, 300)->save($medium);
+            Image::make($problems_image->getRealPath())->fit(1280, 724)->save($large);
+            Image::make($problems_image->getRealPath())->save($full);
+        }
+        else
+        {
+            $filename = '';
+        }
+
+        // dd($problems_image);
 
         switch ($problem_categories_id){
             case 1: $problems_iconImageHref = 'maps-blue.png'; break;
@@ -163,7 +178,7 @@ class HomeController extends Controller
             'problems_long_desc' => $problems_long_desc,
             'problems_lat' => $problems_lat,
             'problems_lng' => $problems_lng,
-            'problems_image' => '',
+            'problems_image' => $filename,
             'problems_video' => '',
             'problems_iconImageHref' => $problems_iconImageHref,
             'problems_active' => 1,

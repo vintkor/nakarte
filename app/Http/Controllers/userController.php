@@ -39,8 +39,6 @@ class UserController extends Controller
 
             $old_path = 'images/user/' . $old_img;
 
-//            dd($old_path);
-
             $filename = 'user-' . $user->value('id') . '-' . time() . '.' . $img->getClientOriginalExtension();
 
             $thumb_path = public_path('images/user/' . $filename);

@@ -8,8 +8,16 @@
                     <h1>{{ $problem->problems_title }}<br><small>{{ $problem->problems_address }}</small></h1>
                     <hr>
                     <div class="row">
-                        <div class="col-md-8"><div id="map"></div></div>
-                        <div class="col-md-4"><img class="img-responsive" src="//placehold.it/600x600" alt=""></div>
+                        @if(!empty($problem->problems_image))
+                            <div class="col-md-8"><div id="map"></div></div>
+                            <div class="col-md-4">
+                                <img class="img-responsive"
+                                     src="{{ asset('images/problems/problems_images/medium/'.$problem->problems_image) }}" 
+                                     alt="{{ $problem->problems_title . ' ' . $problem->problems_address }}">
+                            </div>
+                        @else
+                            <div class="col-md-12"><div id="map"></div></div>
+                        @endif
                     </div>
                     <hr>
                     <div class="col-md-12">{{ $problem->problems_long_desc }}</div>
@@ -51,7 +59,7 @@
 @push('css')
 <style>
     #map {
-        height: 350px;
+        height: 300px;
     }
 </style>
 @endpush
