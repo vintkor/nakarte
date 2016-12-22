@@ -6,6 +6,22 @@ html,
 body {
   height: 100%;
 }
+.align-right {
+  text-align: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
 .wrapper {
   display: flex;
   flex-direction: column;

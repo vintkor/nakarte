@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-group">
                             <label for="you_tube">Адрес страницы YouTube с видео</label>
-                            <input type="text" id="you-tube" name="you_tube" class="form-control" placeholder="https://www.youtube.com/watch?v=DEesOWwBsYw">
+                            <input type="text" id="you_tube" name="you_tube" class="form-control" placeholder="https://www.youtube.com/watch?v=DEesOWwBsYw">
                         </div>
                     </div>
                     <div class="col-md-6">

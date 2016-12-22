@@ -22,6 +22,33 @@
                 <h1 style="text-align: center">Профиль пользователя {{ $user->name }}<br><small>{{ $user->email }}</small></h1>
             </div>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr class="info">
+                            <th>Проблема</th>
+                            <th>Адресс</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($problems as $problem)
+                        <tr>
+                            <td><a href="{{ URL::route('single_problem_get', ['slug'=>$problem->problems_slug]) }}">{{ $problem->problems_title }}</a></td>
+                            <td>{{ $problem->problems_address }}</td>
+                            @if($problem->problems_active == 1)
+                                <td><span class="label label-danger">Активная</span></td>
+                            @endif
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <?php echo $problems->render(); ?>
+
+            </div>
+        </div>
     </div>
 
     <button class="edit_profile_style outline" data-toggle="modal" data-target=".edit_profile"><i class="fa fa-pencil" aria-hidden="true"></i></button>

@@ -28,14 +28,25 @@ class HomeController extends Controller
         $data = [
             'type' => 'FeatureCollection'
         ];
-//        dd($data_test);
+
         foreach ($data_test as $key => $value) {
+
+            $text = str_limit($data_test[$key]->problems_long_desc, 200, '...');
+            $link = URL::route('single_problem_get', $data_test[$key]->problems_slug);
+
+            if(!empty($data_test[$key]->problems_image)) {
+                $image = '<img src="' . asset('/images/problems/problems_images/thumb/'
+                        . $data_test[$key]->problems_image)
+                        . '" class="problem-baloon-img pull-right">';
+                $full_text = '<div class="col-md-9">' . $text . '</div><div class="col-md-3">' . $image . '</div>';
+            } else {
+                $image = null;
+                $full_text = '<div class="col-md-12">' . $text . '</div>';
+            }
 
             $balloonContentHeader = $data_test[$key]->problems_title . '<hr>';
             $category = DB::table('problem_categories')->find($data_test[$key]->problem_categories_id);
-            $balloonContentBody = str_limit($data_test[$key]->problems_long_desc, 200, '...')
-                                . '<br><a href="'
-                                . URL::route('single_problem_get', $data_test[$key]->problems_slug)
+            $balloonContentBody = $full_text . '<br><a href="' . $link
                                 . '" class="btn btn-sm btn-success pull-right">Больше информации</a><div class="clearfix"></div>';
             $coordinates = [$data_test[$key]->problems_lat, $data_test[$key]->problems_lng];
             $balloonContentFooter = '<hr>Адрес проблемы: '
@@ -76,8 +87,6 @@ class HomeController extends Controller
         $data = [
             'type' => 'FeatureCollection'
         ];
-
-//        dd($data_test);
 
         $count = 0;
         foreach ($data_test as $key => $value) {
@@ -160,7 +169,6 @@ class HomeController extends Controller
             $filename = '';
         }
 
-        // dd($problems_image);
 
         switch ($problem_categories_id){
             case 1: $problems_iconImageHref = 'maps-blue.png'; break;
@@ -179,7 +187,7 @@ class HomeController extends Controller
             'problems_lat' => $problems_lat,
             'problems_lng' => $problems_lng,
             'problems_image' => $filename,
-            'problems_video' => '',
+            'problems_video' => $problems_video,
             'problems_iconImageHref' => $problems_iconImageHref,
             'problems_active' => 1,
             'problems_slug' => $problems_slug

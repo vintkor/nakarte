@@ -20,10 +20,11 @@ class UserController extends Controller
     {
 
         $user = \Auth::user();
+        $problems = DB::table('problems')->paginate(15);
 
         SEOMeta::setTitle("Профиль пользователя $user->name");
 
-        return view('profile', ['user' => $user]);
+        return view('profile', ['user' => $user, 'problems' => $problems]);
     }
 
     public function update_profile(Request $request)
